@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HolyAds — Your own ad network, under your control</title>
+<meta name="description" content="HolyAds is a self-hosted paid advertising network and ad server. Advertisers, publishers, billing, delivery channels, analytics and anti-fraud in one native PHP platform.">
+<style>
+:root{
+  --primary:#4f46e5; --primary-dark:#4338ca; --accent:#06b6d4; --ink:#0f172a;
+  --muted:#64748b; --line:#e2e8f0; --bg:#f8fafc; --white:#fff;
+  --shadow:0 18px 45px rgba(15,23,42,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--white)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{height:66px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;letter-spacing:-.4px}
+.mark{width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;display:grid;place-items:center;font-weight:900}
+.nav-links{display:flex;gap:22px;align-items:center;font-size:14px;font-weight:600;color:#334155}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{background:var(--ink);color:#fff!important;padding:9px 16px;border-radius:8px}
+
+/* hero */
+.hero{background:radial-gradient(900px 500px at 85% 10%,rgba(6,182,212,.25),transparent 60%),linear-gradient(135deg,#eef2ff,#f0fdfa);padding:88px 0 70px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.eyebrow{display:inline-block;background:#e0e7ff;color:var(--primary-dark);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;border-radius:999px}
+h1{font-size:clamp(38px,5vw,60px);line-height:1.07;letter-spacing:-2px;margin:20px 0 18px}
+h1 span{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:19px;color:#475569;max-width:560px;margin:0 0 28px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:10px;font-weight:700;font-size:15px}
+.btn.primary{background:var(--primary);color:#fff;box-shadow:0 10px 24px rgba(79,70,229,.28)}
+.btn.primary:hover{background:var(--primary-dark)}
+.btn.ghost{background:#fff;border:1px solid var(--line)}
+.btn.dark{background:var(--ink);color:#fff}
+.trust{display:flex;gap:22px;margin-top:30px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.trust b{display:block;font-size:20px;color:var(--ink)}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;transform:rotate(1deg)}
+.hero-card img{width:100%}
+.hero-card .bar{display:flex;gap:6px;padding:12px 14px;background:#f1f5f9;border-bottom:1px solid var(--line)}
+.dot{width:10px;height:10px;border-radius:50%;background:#cbd5e1}
+
+/* sections */
+section{padding:78px 0}
+section.alt{background:var(--bg);border-block:1px solid var(--line)}
+.center{text-align:center;max-width:700px;margin:0 auto 44px}
+.kicker{color:var(--primary);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.12em}
+h2{font-size:clamp(28px,3.6vw,42px);letter-spacing:-1.2px;line-height:1.15;margin:10px 0 12px}
+.sub{color:var(--muted);font-size:17px;margin:0}
+
+.grid{display:grid;gap:18px}
+.grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 5px 16px rgba(15,23,42,.04)}
+.card .ico{width:40px;height:40px;border-radius:10px;background:#eef2ff;color:var(--primary);display:grid;place-items:center;font-size:20px;margin-bottom:14px}
+.card h3{margin:0 0 8px;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+
+/* screenshots */
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.shot{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in}
+.shot img{width:100%;height:auto;transition:transform .35s}
+.shot:hover img{transform:scale(1.02)}
+.shot figcaption{padding:14px 16px;font-size:14px;font-weight:700;border-top:1px solid var(--line)}
+.shot figcaption span{display:block;font-weight:400;color:var(--muted);font-size:13px;margin-top:3px}
+.shot.wide{grid-column:1/-1}
+
+/* video */
+.video-wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center}
+video{width:100%;border-radius:16px;border:1px solid var(--line);box-shadow:var(--shadow);background:#0f172a}
+.steps{counter-reset:step;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:step;position:relative;padding:0 0 20px 48px;font-size:15px}
+.steps li:before{content:counter(step);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;background:#eef2ff;color:var(--primary);font-weight:800;display:grid;place-items:center}
+.steps b{display:block;margin-bottom:2px}
+.steps span{color:var(--muted)}
+
+/* cta + footer */
+.cta{background:linear-gradient(135deg,var(--primary),#6d28d9 55%,var(--accent));color:#fff;text-align:center}
+.cta h2{font-size:clamp(30px,4vw,46px)}
+.cta p{opacity:.9;max-width:620px;margin:0 auto 26px}
+footer{background:var(--ink);color:#cbd5e1;padding:34px 0;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:#fff}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(2,6,23,.88);display:none;place-items:center;z-index:100;padding:24px;cursor:zoom-out}
+.lightbox.open{display:grid}
+.lightbox img{max-width:94vw;max-height:88vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+
+@media(max-width:900px){
+  .hero-grid,.video-wrap{grid-template-columns:1fr}
+  .grid.cols-3,.grid.cols-4{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .grid.cols-3,.grid.cols-4,.grid.cols-2,.shots{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="mark">H</span> HolyAds</a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#screenshots">Screenshots</a>
+      <a href="#video">Watch</a>
+      <a href="#how">How it works</a>
+    </div>
+    <a class="nav-cta" href="https://github.com/sniffis-commits/holyads" target="_blank" rel="noopener">Get the source</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Self-hosted • Native PHP • No frameworks</span>
+      <h1>Own your ad network.<br><span>Keep every dollar.</span></h1>
+      <p class="lede">HolyAds is a complete paid-advertising platform: advertiser portals, admin approval, wallets and ledgers, ad serving across every channel, real-time analytics and fraud filtering — running on your own infrastructure.</p>
+      <div class="buttons">
+        <a class="btn primary" href="#video">▶ Watch the 16s tour</a>
+        <a class="btn ghost" href="#screenshots">See screenshots</a>
+      </div>
+      <div class="trust">
+        <div><b>91/91</b>QA checks passing</div>
+        <div><b>7</b>creative formats</div>
+        <div><b>10+</b>delivery channels</div>
+        <div><b>0</b>frameworks</div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+      <img src="assets/screenshots/admin-dashboard.jpg" alt="HolyAds admin dashboard showing revenue, impressions and campaign performance">
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Everything you need</span>
+      <h2>One platform. Both sides of the market.</h2>
+      <p class="sub">Built for operators who want the functionality of an ad network without handing control — or margin — to a third party.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card"><div class="ico">◆</div><h3>Advertiser portal</h3><p>Self-service signup, email verification, campaign builder with targeting, budgets and scheduling, wallet and live analytics.</p></div>
+      <div class="card"><div class="ico">◇</div><h3>Admin control</h3><p>Nothing goes live without approval. Review creatives in a sandbox, manage advertisers, zones, publishers and settings.</p></div>
+      <div class="card"><div class="ico">$</div><h3>Billing engine</h3><p>CPC, CPM and CPA bidding, double-entry ledger, deposits via Stripe or PayPal, refunds, invoices and budget pacing.</p></div>
+      <div class="card"><div class="ico">↗</div><h3>Every channel</h3><p>Async JS tags, iframes, REST API for apps, smart links, SVG/PNG QR codes, VAST/VMAP video, email and CMS snippets.</p></div>
+      <div class="card"><div class="ico">▦</div><h3>Analytics</h3><p>Impressions, clicks, CTR, spend, eCPC, eCPM, conversions and revenue with time series, geo, device, browser and zone breakdowns.</p></div>
+      <div class="card"><div class="ico">✕</div><h3>Anti-fraud</h3><p>Bot, headless, datacenter and rapid-click filtering. Invalid traffic is scored, logged separately and never billed.</p></div>
+      <div class="card"><div class="ico">◎</div><h3>Publisher network</h3><p>Publisher accounts, zone ownership, revenue share, earnings ledger and payouts — turn an ad server into a marketplace.</p></div>
+      <div class="card"><div class="ico">{ }</div><h3>Developer ready</h3><p>Documented REST API, OpenAPI spec, API keys, signed outbound webhooks and vanilla Swift / Kotlin / JS snippets.</p></div>
+      <div class="card"><div class="ico">⚑</div><h3>White-label</h3><p>Name, colours, logo, emails and legal pages configurable in one place. RTL/LTR and Hebrew/English dictionaries included.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="screenshots">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Product tour</span>
+      <h2>See the actual product</h2>
+      <p class="sub">Real screenshots from the running platform. Click any image to enlarge.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot wide"><img src="assets/screenshots/admin-dashboard.jpg" alt="Admin platform overview" loading="lazy"><figcaption>Platform overview<span>Revenue, impressions, clicks, conversions and spend trends at a glance.</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screenshots/approval-queue.jpg" alt="Campaign approval queue" loading="lazy"><figcaption>Approval queue<span>Creative previews and one-click approve / reject.</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screenshots/advertiser-dashboard.jpg" alt="Advertiser dashboard" loading="lazy"><figcaption>Advertiser dashboard<span>Balance, budgets, campaigns and performance for each advertiser.</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screenshots/embed-and-qr.jpg" alt="Embed codes and QR codes" loading="lazy"><figcaption>Embed &amp; QR<span>Copy-paste tags for web, apps, video, email, CMS and QR.</span></figcaption></figure>
+      <figure class="shot"><img src="assets/screenshots/analytics.jpg" alt="Analytics breakdowns" loading="lazy"><figcaption>Analytics<span>Time series, top performers, country, device, browser and referrer breakdowns.</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="video">
+  <div class="wrap video-wrap">
+    <video controls playsinline preload="metadata" poster="assets/screenshots/embed-and-qr.jpg">
+      <source src="assets/video/how-it-works.mp4" type="video/mp4">
+      Your browser does not support the video tag. <a href="assets/video/how-it-works.mp4">Download the tour</a>.
+    </video>
+    <div>
+      <span class="kicker">16-second tour</span>
+      <h2>From install to insights</h2>
+      <ol class="steps">
+        <li><b>Run the installer</b><span>Two commands: install, then start the server.</span></li>
+        <li><b>Advertiser portal</b><span>Create campaigns, upload creatives and add funds.</span></li>
+        <li><b>Publish anywhere</b><span>Copy a JS tag, API endpoint, VAST tag or QR code.</span></li>
+        <li><b>Measure everything</b><span>Watch spend, clicks, conversions and fraud in real time.</span></li>
+      </ol>
+      <a class="btn dark" href="https://github.com/sniffis-commits/holyads" target="_blank" rel="noopener">Read the README →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="how">
+  <div class="wrap">
+    <div class="center">
+      <span class="kicker">Getting started</span>
+      <h2>Up and running in minutes</h2>
+      <p class="sub">No Composer, no Node build step. PHP 8.1+, PDO and a web server are all it takes.</p>
+    </div>
+    <div class="grid cols-4">
+      <div class="card"><div class="ico">1</div><h3>Clone</h3><p>Get the source from the private GitHub repository.</p></div>
+      <div class="card"><div class="ico">2</div><h3>Install</h3><p><code>php setup.php</code> creates the schema and loads seeded POC data.</p></div>
+      <div class="card"><div class="ico">3</div><h3>Run</h3><p><code>run.bat</code> on Windows or <code>./run.sh</code> on Linux.</p></div>
+      <div class="card"><div class="ico">4</div><h3>Explore</h3><p>Log in as admin or demo advertiser — credentials are in the README.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Take control of your ad stack.</h2>
+    <p>Self-hosted, white-label and built on plain PHP. The full source, documentation and QA report are in the repository.</p>
+    <div class="buttons" style="justify-content:center">
+      <a class="btn ghost" href="https://github.com/sniffis-commits/holyads" target="_blank" rel="noopener">View the repository</a>
+      <a class="btn dark" href="#screenshots">Browse screenshots</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="brand"><span class="mark">H</span> HolyAds</span>
+    <span>Self-hosted ad network &amp; ad server · promotional site</span>
+    <span><a href="https://github.com/sniffis-commits/holyads" target="_blank" rel="noopener">Source</a></span>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox"><img id="lightbox-img" src="" alt="Enlarged screenshot"></div>
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'), img=document.getElementById('lightbox-img');
+  document.querySelectorAll('.shot img').forEach(function(el){
+    el.addEventListener('click',function(){ img.src=el.src; img.alt=el.alt; lb.classList.add('open'); });
+  });
+  lb.addEventListener('click',function(){ lb.classList.remove('open'); img.src=''; });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ lb.classList.remove('open'); img.src=''; } });
+})();
+</script>
+</body>
+</html>

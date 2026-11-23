@@ -1,0 +1,5 @@
+[0:v]scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,fps=24,fade=t=in:st=0:d=0.5,fade=t=out:st=3.5:d=0.5[v0];
+[1:v]scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,fps=24,fade=t=in:st=0:d=0.5,fade=t=out:st=3.5:d=0.5[v1];
+[2:v]scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,fps=24,fade=t=in:st=0:d=0.5,fade=t=out:st=3.5:d=0.5[v2];
+[3:v]scale=1280:720:force_original_aspect_ratio=increase,crop=1280:720,setsar=1,fps=24,fade=t=in:st=0:d=0.5,fade=t=out:st=3.5:d=0.5[v3];
+[v0][v1][v2][v3]concat=n=4:v=1:a=0[out]
